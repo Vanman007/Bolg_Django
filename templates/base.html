@@ -8,13 +8,17 @@
   </head
   <body>     
     <header>       
-      <h1><a href="{% url 'home'%}">Django blog
-      </a>
-      </h1>     
-    </header>     
-    <div>       
-      {% block content %}     
-      {% endblock content %}     
+      <h1><a href="{% url 'home'%}">Django blog</a></h1>     
+    </header>
+    <div>
+      {% if user.is_authenticated %}
+      <p>Hi {{ user.username }}!</p>
+      <a href="{% url 'logout' %}">Log Out</a>   
+      {% else %}
+      <a href="{% url 'login' %}">Log In</a>   
+      {% endif %}
+      {% block content %}
+      {% endblock content %}
     </div>   
   </body>
 </html>
